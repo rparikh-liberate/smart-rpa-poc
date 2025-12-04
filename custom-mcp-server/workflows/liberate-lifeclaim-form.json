@@ -1,0 +1,404 @@
+{
+  "name": "liberate-lifeclaim-form",
+  "version": "1.0",
+  "description": "Navigate to Liberate Herald demo life claim form and fill it out",
+  "requiresAuth": false,
+  "persistentSession": false,
+  "explicitToolCalls": true,
+  "steps": [
+    {
+      "step": 1,
+      "tool": "browser_navigate",
+      "arguments": {
+        "url": "https://herald.demo.liberate.claims/lifeclaim"
+      },
+      "description": "Navigate to the Liberate life claim form"
+    },
+    {
+      "step": 2,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 2
+      },
+      "description": "Wait for form to load"
+    },
+    {
+      "step": 3,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "File a New Claim",
+        "ref": ""
+      },
+      "description": "Select 'File a New Claim' option"
+    },
+    {
+      "step": 4,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Continue",
+        "ref": ""
+      },
+      "description": "Click Continue to proceed to next step"
+    },
+    {
+      "step": 5,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 2
+      },
+      "description": "Wait for claim type selection page"
+    },
+    {
+      "step": 6,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Life",
+        "ref": ""
+      },
+      "description": "Select 'Life' claim type"
+    },
+    {
+      "step": 7,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Continue",
+        "ref": ""
+      },
+      "description": "Click Continue to proceed to form"
+    },
+    {
+      "step": 9,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Individual Beneficiary",
+        "ref": ""
+      },
+      "description": "Select 'Individual Beneficiary' type"
+    },
+    {
+      "step": 10,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Continue",
+        "ref": ""
+      },
+      "description": "Click Continue to proceed to personal info"
+    },
+    {
+      "step": 11,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 2
+      },
+      "description": "Wait for 'Before we get started' page"
+    },
+    {
+      "step": 12,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Continue",
+        "ref": ""
+      },
+      "description": "Click Continue on info page"
+    },
+    {
+      "step": 13,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 2
+      },
+      "description": "Wait for personal details form"
+    },
+    {
+      "step": 14,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "First name",
+        "ref": "",
+        "text": "John",
+        "submit": false
+      },
+      "description": "Enter First Name"
+    },
+    {
+      "step": 15,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Last name",
+        "ref": "",
+        "text": "Doe",
+        "submit": false
+      },
+      "description": "Enter Last Name"
+    },
+    {
+      "step": 16,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Phone number",
+        "ref": "",
+        "text": "555-555-5555",
+        "submit": false
+      },
+      "description": "Enter Phone Number"
+    },
+    {
+      "step": 17,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Email address",
+        "ref": "",
+        "text": "john.doe@example.com",
+        "submit": false
+      },
+      "description": "Enter Email Address"
+    },
+    {
+      "step": 18,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Continue",
+        "ref": ""
+      },
+      "description": "Click Continue to submit reporting party info"
+    },
+    {
+      "step": 19,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for personal details form"
+    },
+    {
+      "step": 20,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Relationship to deceased",
+        "ref": ""
+      },
+      "description": "Click relationship dropdown"
+    },
+    {
+      "step": 21,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Relationship to deceased",
+        "ref": "",
+        "text": "Spouse",
+        "submit": true
+      },
+      "description": "Enter Relationship: Spouse"
+    },
+    {
+      "step": 22,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Social Security Number",
+        "ref": "",
+        "text": "123-45-6789",
+        "submit": false
+      },
+      "description": "Enter SSN"
+    },
+    {
+      "step": 23,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Mailing address",
+        "ref": "",
+        "text": "123 Main St, San Francisco, CA 94105",
+        "submit": false
+      },
+      "description": "Enter Mailing Address"
+    },
+    {
+      "step": 24,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Continue",
+        "ref": ""
+      },
+      "description": "Click Continue to submit personal details"
+    },
+    {
+      "step": 25,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for deceased info form"
+    },
+    {
+      "step": 26,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Deceased's first name",
+        "ref": "",
+        "text": "Jane",
+        "submit": false
+      },
+      "description": "Enter Deceased First Name"
+    },
+    {
+      "step": 27,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Deceased's last name",
+        "ref": "",
+        "text": "Doe",
+        "submit": false
+      },
+      "description": "Enter Deceased Last Name"
+    },
+    {
+      "step": 28,
+      "tool": "browser_fill_form",
+      "arguments": {
+        "fields": [
+          {
+            "name": "Deceased's date of birth",
+            "ref": "",
+            "type": "textbox",
+            "value": "01/01/1980"
+          }
+        ]
+      },
+      "description": "Enter DOB"
+    },
+    {
+      "step": 29,
+      "tool": "browser_fill_form",
+      "arguments": {
+        "fields": [
+          {
+            "name": "Deceased's date of death",
+            "ref": "",
+            "type": "textbox",
+            "value": "11/01/2025"
+          }
+        ]
+      },
+      "description": "Enter DOD"
+    },
+    {
+      "step": 30,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Continue",
+        "ref": ""
+      },
+      "description": "Click Continue to next deceased info page"
+    },
+    {
+      "step": 31,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for more deceased details"
+    },
+    {
+      "step": 32,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Social Security Number",
+        "ref": "",
+        "text": "987-65-4321",
+        "submit": false
+      },
+      "description": "Enter Deceased SSN"
+    },
+    {
+      "step": 33,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Marital status",
+        "ref": ""
+      },
+      "description": "Click marital status dropdown"
+    },
+    {
+      "step": 34,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Marital status",
+        "ref": "",
+        "text": "Married",
+        "submit": true
+      },
+      "description": "Select Marital Status: Married"
+    },
+    {
+      "step": 35,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Last known address",
+        "ref": "",
+        "text": "123 Main St, San Francisco, CA 94105",
+        "submit": false
+      },
+      "description": "Enter Last Known Address"
+    },
+    {
+      "step": 36,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Continue",
+        "ref": ""
+      },
+      "description": "Click Continue to Policy section"
+    },
+    {
+      "step": 37,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for signature page"
+    },
+    {
+      "step": 38,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Signature of person making the claim",
+        "ref": ""
+      },
+      "description": "Click signature area"
+    },
+    {
+      "step": 39,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Save Signature",
+        "ref": ""
+      },
+      "description": "Click Save Signature"
+    },
+    {
+      "step": 40,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Continue",
+        "ref": ""
+      },
+      "description": "Click Continue to final submission"
+    }
+  ],
+  "success_criteria": [
+    "Successfully started claim flow",
+    "Navigated to reporting party info",
+    "Filled out reporting party details",
+    "Filled out personal details",
+    "Filled out deceased basic info",
+    "Filled out deceased extended info",
+    "Signed and submitted form"
+  ],
+  "notes": [
+    "Full end-to-end workflow for Liberate Life Claim",
+    "No authentication required",
+    "Uses stable element labels for robustness",
+    "Includes signature step"
+  ]
+}
+

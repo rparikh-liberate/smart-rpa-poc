@@ -1,0 +1,140 @@
+{
+  "name": "rei-hiking-shoes-v2",
+  "version": "2.0",
+  "description": "Find and add highest-rated men's hiking shoes (size 10) to cart on REI.com - Enhanced with semantic selectors",
+  "steps": [
+    {
+      "step": 1,
+      "action": "navigate",
+      "url": "https://www.rei.com",
+      "description": "Go to REI homepage"
+    },
+    {
+      "step": 2,
+      "action": "type",
+      "target": {
+        "role": "combobox",
+        "name_contains": "search",
+        "description": "Main search box"
+      },
+      "value": "hiking shoes men",
+      "submit": true,
+      "description": "Search for men's hiking shoes"
+    },
+    {
+      "step": 3,
+      "action": "wait_for",
+      "target": {
+        "role": "heading",
+        "name_pattern": "\\d+ results",
+        "description": "Results count heading"
+      },
+      "description": "Wait for search results to load"
+    },
+    {
+      "step": 4,
+      "action": "click",
+      "target": {
+        "role": "button",
+        "name_contains": "size",
+        "description": "Size filter button"
+      },
+      "description": "Open size filter"
+    },
+    {
+      "step": 5,
+      "action": "select",
+      "target": {
+        "role": "checkbox",
+        "name": "10",
+        "closest_to": "Men's Footwear Sizing",
+        "description": "Size 10 checkbox"
+      },
+      "description": "Select size 10"
+    },
+    {
+      "step": 6,
+      "action": "click",
+      "target": {
+        "role": "combobox",
+        "name_contains": "sort",
+        "description": "Sort dropdown"
+      },
+      "description": "Open sort options"
+    },
+    {
+      "step": 7,
+      "action": "select_option",
+      "target": {
+        "role": "combobox",
+        "name_contains": "sort"
+      },
+      "option": "Top rated",
+      "description": "Sort by highest rating"
+    },
+    {
+      "step": 8,
+      "action": "wait_for",
+      "target": {
+        "role": "link",
+        "name_pattern": ".*hiking.*shoe",
+        "description": "First product link"
+      },
+      "description": "Wait for results to update"
+    },
+    {
+      "step": 9,
+      "action": "click",
+      "target": {
+        "role": "link",
+        "position": "first",
+        "name_pattern": ".*hiking.*shoe",
+        "description": "First product in results"
+      },
+      "description": "Click on the highest-rated shoe"
+    },
+    {
+      "step": 10,
+      "action": "wait_for",
+      "target": {
+        "role": "heading",
+        "level": 1,
+        "description": "Product title"
+      },
+      "description": "Wait for product page to load"
+    },
+    {
+      "step": 11,
+      "action": "click",
+      "target": {
+        "role": "button",
+        "name_contains": "add to cart",
+        "description": "Add to cart button"
+      },
+      "description": "Add product to cart"
+    },
+    {
+      "step": 12,
+      "action": "verify",
+      "target": {
+        "role": "heading",
+        "name_contains": "added to cart",
+        "description": "Success confirmation"
+      },
+      "description": "Verify item was added to cart"
+    }
+  ],
+  "success_criteria": [
+    "Product page loads with hiking shoes",
+    "Item is added to cart",
+    "Cart count increases"
+  ],
+  "notes": [
+    "This workflow uses semantic selectors (role, name patterns) instead of refs",
+    "The LLM translates these to MCP tools at runtime",
+    "Works across sessions because it describes WHAT to find, not WHERE it is"
+  ]
+}
+
+
+

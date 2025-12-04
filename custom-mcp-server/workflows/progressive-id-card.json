@@ -1,0 +1,91 @@
+{
+  "name": "progressive-id-card",
+  "version": "2.0",
+  "description": "Login to Progressive and download ID card as PDF using exact element selectors",
+  "requiresAuth": true,
+  "persistentSession": true,
+  "explicitToolCalls": true,
+  "steps": [
+    {
+      "step": 1,
+      "tool": "login_to_site",
+      "arguments": {
+        "site": "progressive"
+      },
+      "description": "Login with username/password (MFA skipped due to 'Remember device')"
+    },
+    {
+      "step": 2,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for dashboard to load"
+    },
+    {
+      "step": 3,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Get your ID card",
+        "ref": "e129"
+      },
+      "description": "Click 'Get your ID card' link on dashboard"
+    },
+    {
+      "step": 4,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for ID card hub page"
+    },
+    {
+      "step": 5,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Current Policy Period",
+        "ref": "e182"
+      },
+      "description": "Select current policy period"
+    },
+    {
+      "step": 6,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for ID card to load"
+    },
+    {
+      "step": 7,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Save",
+        "ref": "e283"
+      },
+      "description": "Click 'Save' button to download ID card PDF"
+    },
+    {
+      "step": 8,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 5
+      },
+      "description": "Wait for PDF download to complete"
+    }
+  ],
+  "success_criteria": [
+    "Successfully logged in (no MFA needed)",
+    "Successfully accessed ID card section",
+    "ID card PDF downloaded",
+    "File saved to output/downloads directory"
+  ],
+  "notes": [
+    "Includes login steps with username/password",
+    "No MFA required if 'Remember device' was checked in progressive-login workflow",
+    "Requires PLAYWRIGHT_ISOLATED=false to use persistent sessions",
+    "Downloaded PDF will be in output directory or default Downloads folder",
+    "Run progressive-login workflow first if this is your first time (for MFA setup)"
+  ]
+}
+

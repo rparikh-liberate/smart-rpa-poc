@@ -1,0 +1,5 @@
+openai>=1.68.0
+python-dotenv>=1.0.0
+mcp[cli]
+asyncio>=3.4.3
+

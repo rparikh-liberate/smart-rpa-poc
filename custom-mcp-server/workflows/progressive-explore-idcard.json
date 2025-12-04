@@ -1,0 +1,60 @@
+{
+  "name": "progressive-explore-idcard",
+  "version": "1.0",
+  "description": "Click into ID card section and capture exact download button selectors",
+  "persistentSession": true,
+  "explicitToolCalls": true,
+  "steps": [
+    {
+      "step": 1,
+      "tool": "login_to_site",
+      "arguments": {
+        "site": "progressive"
+      },
+      "description": "Login to Progressive"
+    },
+    {
+      "step": 2,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for dashboard"
+    },
+    {
+      "step": 3,
+      "tool": "browser_snapshot",
+      "arguments": {},
+      "description": "Snapshot of dashboard (ref e129 is the 'Get your ID card' link)"
+    },
+    {
+      "step": 4,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Get your ID card",
+        "ref": "e129"
+      },
+      "description": "Click the 'Get your ID card' link using exact ref from dashboard"
+    },
+    {
+      "step": 5,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 5
+      },
+      "description": "Wait for ID card page/modal to load"
+    },
+    {
+      "step": 6,
+      "tool": "browser_snapshot",
+      "arguments": {},
+      "description": "CAPTURE: ID card page with download/print buttons - extract exact refs!"
+    }
+  ],
+  "notes": [
+    "This will click into the ID card section and capture exact button selectors",
+    "Use the snapshot from step 6 to get refs for download/print buttons",
+    "Then update progressive-id-card.json with those exact refs"
+  ]
+}
+

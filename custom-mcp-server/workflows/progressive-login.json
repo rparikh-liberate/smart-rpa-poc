@@ -1,0 +1,63 @@
+{
+  "name": "progressive-login",
+  "version": "1.0",
+  "description": "Login to Progressive Insurance with MFA support and device remembering (first-time setup)",
+  "requiresManualMFA": true,
+  "persistentSession": true,
+  "explicitToolCalls": true,
+  "steps": [
+    {
+      "step": 1,
+      "tool": "login_to_site",
+      "arguments": {
+        "site": "progressive"
+      },
+      "description": "Execute login_to_site tool - navigates, retrieves credentials, and fills login form"
+    },
+    {
+      "step": 2,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 5
+      },
+      "description": "Wait 5 seconds for MFA page to load"
+    },
+    {
+      "step": 3,
+      "tool": "browser_snapshot",
+      "arguments": {},
+      "description": "Take snapshot to confirm MFA page - user will see browser window and should enter MFA code and check 'Remember this device'"
+    },
+    {
+      "step": 4,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "text": "Policy"
+      },
+      "description": "Wait for 'Policy' text to appear on dashboard (browser will stay open waiting for user to complete MFA manually - they should enter code, check 'Remember device', and click Continue)"
+    },
+    {
+      "step": 5,
+      "tool": "browser_snapshot",
+      "arguments": {},
+      "description": "Take snapshot of dashboard to verify login success and session saved"
+    }
+  ],
+  "success_criteria": [
+    "Successfully logged in to Progressive",
+    "MFA completed and device remembered",
+    "Dashboard/account page visible",
+    "Session saved for future use"
+  ],
+  "notes": [
+    "⚠️ IMPORTANT: Use INTERACTIVE MODE for first-time login with MFA",
+    "Run: python main.py --interactive",
+    "Then type: Execute the progressive-login workflow",
+    "This workflow requires manual MFA code entry on first run",
+    "After completing this once, 'Remember this device' will prevent future MFA challenges",
+    "Run with PLAYWRIGHT_ISOLATED=false to persist the session",
+    "Run with PLAYWRIGHT_HEADLESS=false to see the browser for MFA entry",
+    "Single query mode will close the browser before you can enter MFA!"
+  ]
+}
+

@@ -1,0 +1,19 @@
+{
+  "name": "custom-playwright-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Extended MCP Playwright with workflow management",
+  "main": "server.js",
+  "bin": {
+    "custom-playwright-mcp": "server.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@playwright/mcp": "latest",
+    "@modelcontextprotocol/sdk": "^1.17.5"
+  }
+}
+

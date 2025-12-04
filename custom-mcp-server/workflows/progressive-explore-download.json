@@ -1,0 +1,76 @@
+{
+  "name": "progressive-explore-download",
+  "version": "1.0",
+  "description": "Navigate to ID card and capture download/print button selectors",
+  "persistentSession": true,
+  "explicitToolCalls": true,
+  "steps": [
+    {
+      "step": 1,
+      "tool": "login_to_site",
+      "arguments": {
+        "site": "progressive"
+      },
+      "description": "Login to Progressive"
+    },
+    {
+      "step": 2,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for dashboard"
+    },
+    {
+      "step": 3,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Get your ID card",
+        "ref": "e129"
+      },
+      "description": "Click 'Get your ID card' link"
+    },
+    {
+      "step": 4,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for ID card hub page"
+    },
+    {
+      "step": 5,
+      "tool": "browser_snapshot",
+      "arguments": {},
+      "description": "Snapshot of policy selection page"
+    },
+    {
+      "step": 6,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Current Policy Period",
+        "ref": "e182"
+      },
+      "description": "Click current policy period link"
+    },
+    {
+      "step": 7,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 5
+      },
+      "description": "Wait for ID card viewer to load with download/print options"
+    },
+    {
+      "step": 8,
+      "tool": "browser_snapshot",
+      "arguments": {},
+      "description": "FINAL CAPTURE: ID card page with Download/Print/Email buttons - extract their exact refs!"
+    }
+  ],
+  "notes": [
+    "This captures the actual download/print button selectors",
+    "Step 8 snapshot will have the refs we need for progressive-id-card.json"
+  ]
+}
+

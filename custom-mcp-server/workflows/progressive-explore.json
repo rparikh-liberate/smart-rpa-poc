@@ -1,0 +1,51 @@
+{
+  "name": "progressive-explore",
+  "version": "1.0",
+  "description": "Explore Progressive dashboard to find exact element selectors for ID card download",
+  "persistentSession": true,
+  "explicitToolCalls": true,
+  "steps": [
+    {
+      "step": 1,
+      "tool": "login_to_site",
+      "arguments": {
+        "site": "progressive"
+      },
+      "description": "Login to Progressive"
+    },
+    {
+      "step": 2,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for dashboard"
+    },
+    {
+      "step": 3,
+      "tool": "browser_snapshot",
+      "arguments": {},
+      "description": "CAPTURE: Dashboard snapshot - look for ID card/insurance card links"
+    },
+    {
+      "step": 4,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 300
+      },
+      "description": "Wait 5 minutes - manually click ID card link and note the URL/page that opens"
+    },
+    {
+      "step": 5,
+      "tool": "browser_snapshot",
+      "arguments": {},
+      "description": "CAPTURE: ID card page snapshot - look for download/print buttons and their exact selectors"
+    }
+  ],
+  "notes": [
+    "This is a helper workflow to explore and capture exact element selectors",
+    "Use the snapshots to find exact element refs, IDs, names, and aria-labels",
+    "Then update progressive-id-card.json with the exact selectors"
+  ]
+}
+

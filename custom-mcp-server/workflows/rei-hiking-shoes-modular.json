@@ -1,0 +1,114 @@
+{
+  "name": "rei-hiking-shoes-modular",
+  "description": "Login to REI using modular login tool, then find and add highest rated men's hiking shoes (size 10) to cart",
+  "version": "2.0",
+  "createdAt": "2025-11-19",
+  "steps": [
+    {
+      "step": 1,
+      "tool": "login_to_site",
+      "description": "Login to REI using modular login helper",
+      "arguments": {
+        "site": "rei"
+      },
+      "note": "This single tool handles the entire login flow: gets credentials, provides instructions for navigation, form filling, and verification"
+    },
+    {
+      "step": 2,
+      "tool": "browser_type",
+      "description": "Search for hiking shoes for men",
+      "arguments": {
+        "element": "Search combobox",
+        "ref": "{{SEARCH_INPUT_REF}}",
+        "text": "hiking shoes men",
+        "submit": true
+      },
+      "note": "After login is complete, find search box from homepage snapshot and enter search query"
+    },
+    {
+      "step": 3,
+      "tool": "browser_snapshot",
+      "description": "Get search results page snapshot"
+    },
+    {
+      "step": 4,
+      "tool": "browser_click",
+      "description": "Expand size filter options",
+      "arguments": {
+        "element": "Show all size options button",
+        "ref": "{{SIZE_EXPAND_REF}}"
+      },
+      "note": "Look for 'Show all size options' button in snapshot"
+    },
+    {
+      "step": 5,
+      "tool": "browser_click",
+      "description": "Filter by size 10",
+      "arguments": {
+        "element": "Size 10 filter link",
+        "ref": "{{SIZE_10_REF}}"
+      },
+      "note": "Look for link with text '10' under size filters"
+    },
+    {
+      "step": 6,
+      "tool": "browser_snapshot",
+      "description": "Get filtered results"
+    },
+    {
+      "step": 7,
+      "tool": "browser_click",
+      "description": "Click on highest rated product",
+      "arguments": {
+        "element": "Product link for highest rated hiking shoes",
+        "ref": "{{PRODUCT_LINK_REF}}"
+      },
+      "note": "Look for product with highest rating in snapshot"
+    },
+    {
+      "step": 8,
+      "tool": "browser_snapshot",
+      "description": "Get product page to find size selector"
+    },
+    {
+      "step": 9,
+      "tool": "browser_select_option",
+      "description": "Select size 10",
+      "arguments": {
+        "element": "Size selector combobox",
+        "ref": "{{SIZE_SELECTOR_REF}}",
+        "values": ["10"]
+      },
+      "note": "Look for combobox with 'Size' label"
+    },
+    {
+      "step": 10,
+      "tool": "browser_click",
+      "description": "Add item to cart",
+      "arguments": {
+        "element": "Add to cart button",
+        "ref": "{{ADD_TO_CART_REF}}"
+      },
+      "note": "Look for button with text 'Add to cart'"
+    },
+    {
+      "step": 11,
+      "tool": "browser_snapshot",
+      "description": "Verify item was added to cart"
+    }
+  ],
+  "successCriteria": [
+    "Successfully logged into REI account",
+    "Cart should show 1 item",
+    "Product should be hiking shoes",
+    "Size should be 10"
+  ],
+  "notes": [
+    "Uses modular login_to_site tool which handles entire login flow",
+    "Login is now a single step instead of 6-7 separate steps",
+    "Makes workflow reusable and easier to maintain",
+    "The AI will follow the login instructions provided by login_to_site tool",
+    "After login completes, workflow continues with shopping automation"
+  ]
+}
+

@@ -1,0 +1,147 @@
+{
+  "name": "progressive-full",
+  "version": "1.0",
+  "description": "Complete Progressive workflow: Login (if needed) → Get ID card → Save PDF",
+  "persistentSession": true,
+  "steps": [
+    {
+      "step": 1,
+      "action": "navigate",
+      "url": "https://account.apps.progressive.com/access/login?cntgrp=A&fd=accountHome",
+      "description": "Navigate to Progressive (will use saved session if available)"
+    },
+    {
+      "step": 2,
+      "action": "wait_for",
+      "time": 2,
+      "description": "Wait for page to load"
+    },
+    {
+      "step": 3,
+      "action": "snapshot",
+      "description": "Check if already logged in or need to login"
+    },
+    {
+      "step": 4,
+      "action": "conditional",
+      "condition": "if login form visible",
+      "then": [
+        {
+          "action": "call_tool",
+          "tool": "get_login_credentials",
+          "arguments": {
+            "site": "progressive"
+          },
+          "description": "Get credentials if login needed"
+        },
+        {
+          "action": "type",
+          "target": {
+            "role": "textbox",
+            "name_contains": "email"
+          },
+          "value": "{credentials.email}",
+          "description": "Enter email"
+        },
+        {
+          "action": "type",
+          "target": {
+            "role": "textbox",
+            "name_contains": "password"
+          },
+          "value": "{credentials.password}",
+          "description": "Enter password"
+        },
+        {
+          "action": "click",
+          "target": {
+            "role": "button",
+            "name_contains": "sign in"
+          },
+          "description": "Click sign in"
+        },
+        {
+          "action": "wait_for",
+          "time": 3,
+          "description": "Wait for login to complete"
+        }
+      ],
+      "else": [
+        {
+          "action": "log",
+          "message": "Already logged in, skipping login steps"
+        }
+      ],
+      "description": "Login only if needed (adaptive)"
+    },
+    {
+      "step": 5,
+      "action": "manual_if_mfa",
+      "instruction": "If MFA appears, manually enter code and check 'Remember this device'",
+      "description": "Handle MFA if prompted (first-time only)"
+    },
+    {
+      "step": 6,
+      "action": "wait_for",
+      "target": {
+        "role": "navigation",
+        "name_contains": "account"
+      },
+      "description": "Ensure on dashboard/account page"
+    },
+    {
+      "step": 7,
+      "action": "click",
+      "target": {
+        "role": "link",
+        "name_pattern": "id card|insurance card|proof of insurance"
+      },
+      "description": "Navigate to ID card section"
+    },
+    {
+      "step": 8,
+      "action": "wait_for",
+      "time": 2,
+      "description": "Wait for ID card page"
+    },
+    {
+      "step": 9,
+      "action": "snapshot",
+      "description": "Verify ID card page loaded"
+    },
+    {
+      "step": 10,
+      "action": "click",
+      "target": {
+        "role": "button",
+        "name_pattern": "download|print|view pdf|get card"
+      },
+      "description": "Download ID card PDF"
+    },
+    {
+      "step": 11,
+      "action": "wait_for",
+      "time": 3,
+      "description": "Wait for PDF download"
+    },
+    {
+      "step": 12,
+      "action": "verify",
+      "description": "Verify PDF downloaded successfully"
+    }
+  ],
+  "success_criteria": [
+    "Logged in to Progressive (or used existing session)",
+    "Navigated to ID card section",
+    "ID card PDF downloaded successfully",
+    "Session saved for future use"
+  ],
+  "notes": [
+    "This is the complete end-to-end workflow",
+    "First run: May require manual MFA code entry",
+    "Subsequent runs: Uses saved session, no MFA needed",
+    "Requires PLAYWRIGHT_ISOLATED=false in .env",
+    "Run with PLAYWRIGHT_HEADLESS=false for first-time MFA setup"
+  ]
+}
+
