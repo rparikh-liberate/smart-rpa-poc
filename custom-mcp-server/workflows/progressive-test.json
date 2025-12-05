@@ -1,0 +1,167 @@
+{
+  "name": "progressive-test",
+  "version": "1.0",
+  "description": "Login to Progressive Test site, search for a policy (with second login), and view documents",
+  "requiresAuth": true,
+  "persistentSession": true,
+  "explicitToolCalls": true,
+  "steps": [
+    {
+      "step": 1,
+      "tool": "login_to_site",
+      "arguments": {
+        "site": "progressive_test"
+      },
+      "description": "First login using stored credentials for progressive_test"
+    },
+    {
+      "step": 2,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 5
+      },
+      "description": "Wait for dashboard/landing page"
+    },
+    {
+      "step": 3,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Policy Search",
+        "ref": ""
+      },
+      "description": "Select Policy Search radio button"
+    },
+    {
+      "step": 4,
+      "tool": "browser_type",
+      "arguments": {
+        "element": "Policy Number",
+        "ref": "",
+        "text": "367081091",
+        "submit": false
+      },
+      "description": "Enter policy number"
+    },
+    {
+      "step": 5,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Search",
+        "ref": ""
+      },
+      "description": "Click Search button"
+    },
+    {
+      "step": 6,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 5
+      },
+      "description": "Wait for redirect to second login page"
+    },
+    {
+      "step": 7,
+      "tool": "login_to_site",
+      "arguments": {
+        "site": "progressive_test"
+      },
+      "description": "Second login on policy servicing system"
+    },
+    {
+      "step": 8,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 5
+      },
+      "description": "Wait for policy page to load after second login"
+    },
+    {
+      "step": 9,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Asfasfasf Aasdfafaf Auto 367081091",
+        "ref": ""
+      },
+      "description": "Click on policy/username menu on left"
+    },
+    {
+      "step": 10,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 2
+      },
+      "description": "Wait for submenu to appear"
+    },
+    {
+      "step": 11,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "ID Cards and Documents",
+        "ref": ""
+      },
+      "description": "Click on ID Cards and Documents in left nav"
+    },
+    {
+      "step": 12,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 2
+      },
+      "description": "Wait for documents submenu"
+    },
+    {
+      "step": 13,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Documents",
+        "ref": ""
+      },
+      "description": "Click on Documents"
+    },
+    {
+      "step": 14,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for documents page to load"
+    },
+    {
+      "step": 15,
+      "tool": "browser_snapshot",
+      "arguments": {},
+      "description": "Snapshot documents page"
+    },
+    {
+      "step": 16,
+      "tool": "browser_click",
+      "arguments": {
+        "element": "Policy Contract",
+        "ref": ""
+      },
+      "description": "Click on first policy document (Policy Contract PDF) to download"
+    },
+    {
+      "step": 17,
+      "tool": "browser_wait_for",
+      "arguments": {
+        "time": 3
+      },
+      "description": "Wait for download to complete"
+    }
+  ],
+  "success_criteria": [
+    "Successfully logged in (first login)",
+    "Searched for policy 367081091",
+    "Successfully logged in (second login - policy servicing)",
+    "Viewed policy details",
+    "Navigated to Documents",
+    "Downloaded first policy document"
+  ],
+  "notes": [
+    "Requires two logins due to bug in their system",
+    "Searches for policy 367081091 and navigates to Documents section",
+    "Downloads the Policy Contract PDF at the end"
+  ]
+}
+
